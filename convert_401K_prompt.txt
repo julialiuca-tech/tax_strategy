@@ -1,0 +1,20 @@
+I want to convert my 401K to Roth IRA and want to simulate the outcome. I have a parameter （total_401K_asset） for the total amount. Top-level simulation parameters are already in the file. 
+
+Starting from the year 2027, I want to compare the following conversion scenarios: 
+1. aggressive -- each year the target withdrawal amount is 1/10 of the total  
+2. intermediate -- each year withdrawal is 1/15 of the total 
+3. moderate -- 1/20 of the total each year 
+4. conservative -- 1/25  of the total each year 
+
+
+In each of the scenario, simulate in the incoming years up to the end_simulation_year as the following: 
+1. If the year is beyond ss_start_year, offset the withdrawal amount by social security amount. Else, do not offset. 
+2. Compute the tax amount using today's tax bracket values. Assume that we are paying tax on the 401K withdrawal (as ordinary income), social security amount (if any), and the ordinary_income_other. Note the tax amount 
+3. if withdrawal amount is bigger than the 401 asset value,  then cap the withdrawal amount ot be the 401K asset value. 
+4. move withdrawal_amount from 401K to Roth IRA
+5. grow both by (growth_rate - inflation_rate)
+
+For this simulation, create a dict variable assets containing keys '401K'
+and 'Roth', similar to that in withdrawal_rsu_401K.py. 
+
+At the end of simulating the scenario, compute the tax-free wealth, and subtract the total tax amount. Report the outcome for each of the scenarios. 

@@ -1,0 +1,22 @@
+
+
+I'd like to refine withdrawl_optimizer. I have get rid of a number of print functions, and we will walk through other changes step by step. 
+
+I have provided an asset list. I have two goals: (1) stock diversification -- converting my Intuit stock to non-Intuit stock, and (2) Roth IRA conversion -- converting my 401K to IRA for tax-free growth. 
+
+write a utility function that computes the withdrawal amount for each year given the following parameters: total amount today, a time horizon of when to start withdraw and when to finish withdraw. Return a list of withdrawal amount, where the list length is the years from now the withdraw should finish. This function should project the value of asset into the future and adjust each years amount based on the number of remaining years. We will use this is as ball-park numbers to similate outcome. 
+
+I want to compare several withdrawal strategies: 
+(1) stock diversification first: achieving this goal with in a time horizon parameter (call it horizon_stock_diversify). The horizon parameter can be tuned, e.g., 5 years, 10 years, 15 years, etc. 
+(2) Roth IRA conversion first: starting from eligible age, withdraw from 401K, achieving the goal of depleting the 401K account by a time horizon parameter (call it horizon_roth_ira_conversion). Again the parameter can be tuned. 
+(3) parallel strategy: parallel withdrawal from both accounts 
+write a function that compute the withdrawal schedule. The input should be strategy name, horizon_stock_diversify, horizon_roth_ira_conversion, and the output should be ball-park numbers of withdrawal amount from these two accounts, each as a list, where the length of the list is (horizon_stock_diversify + horizon_roth_ira_conversion). 
+
+Also, modify the amount with NCQDP distribution. The modification number should come from Intuit Stock. 
+
+
+
+After the depletion of Intuit stock and 401K, I should withdraw funds from the non-Intuit stock fund to cover my annual income need. If the non-Intuit stock fund runs dry, withdraw from my RothIRA account. I'd like to have print function spitting out "account depleted" when that happens. The objective function is how long my combined assets can last me. The longer, the better. 
+
+If I withdraw more than I need, the surplus (withdrawal minus tax minus annual income need) should be converted to IRA or reinvested in non-Intuit stocks. This part of the code already exists, and I am happy about it. 
+
