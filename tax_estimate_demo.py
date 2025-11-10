@@ -315,7 +315,7 @@ def calculate_tax(income_details, filing_status, tax_config=None):
     gross_income_before_ss_adjustment = (
             income_details.get('salary', 0) +
             income_details.get('rental_net_income', 0) +
-            income_details.get('ordinary_dividend', 0) +  
+            income_details.get('ordinary_dividend', 0) +  # This already includes qualified dividends
             income_details.get('short_term_capital_gain', 0) +
             income_details.get('long_term_capital_gain', 0) +
             income_details.get('401k_distribution', 0) +
@@ -501,31 +501,19 @@ if __name__ == "__main__":
     # Example 1: Your current scenario with 2023 tax year (default)
     print("\nEXAMPLE 1: Your Current Income Scenario (2023 - Default)")
 
- 
-    # my_income_scenario = {
-    #     'salary': 901000, #1156486,
-    #     'short_term_capital_gain': 0,
-    #     'long_term_capital_gain': 119700,
-    #     'rental_net_income': 0,
-    #     'ordinary_dividend': 68817+1323,
-    #     'qualified_dividend': 49969,
-    #     '401k_distribution': 0,
-    #     'social_security_distribution': 0,
-    #     'ncqdp_distribution': 0
-    # }
 
     my_income_scenario = {
-        'salary': salary,
-        'short_term_capital_gain': short_term_cg,
-        'long_term_capital_gain': long_term_cg,
-        'rental_net_income': 0,
-        'ordinary_dividend': ordinary_dividend,
-        'qualified_dividend': qualified_dividend,
+        'salary': 150000,
+        'short_term_capital_gain': 20000,
+        'long_term_capital_gain': 30000,
+        'rental_net_income': 50000,
+        'ordinary_dividend': 40000,
+        'qualified_dividend': 20000,
         '401k_distribution': 0,
         'social_security_distribution': 0,
         'ncqdp_distribution': 0
     }
-
+    
     my_filing_status = "married_jointly"
     tax_estimates_2023 = calculate_tax(my_income_scenario, my_filing_status)
     
